@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Nissan Skyline GT-R R34 — DiecastHouse</title>
+    <meta name="description" content="Beli Nissan Skyline GT-R R34 diecast Mini GT 1:64, kondisi Mint in Box. Detail presisi tinggi, kardus tersegel. Pesan via WhatsApp sekarang!">
+
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons (CDN) — Minimalis, ringan, no bug -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gold': '#e8c97a',
+                        'gold-light': '#f0d98a',
+                        'dark-primary': '#0a0a0f',
+                        'dark-secondary': '#0f0f1a',
+                        'dark-card': '#13131f',
+                    },
+                    fontFamily: {
+                        'outfit': ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- AOS (Animate On Scroll) CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="font-outfit bg-dark-primary">
+
+
+<!-- ============================================================
+     NAVBAR — Dynamic Island (sama dengan index.html)
+     ============================================================ -->
+<div class="navbar-wrap">
+<header class="navbar-glass" id="mainNavbar">
+    <div class="container-custom">
+        <nav class="navbar-inner flex items-center justify-between py-4">
+
+            <!-- Logo -->
+            <a href="index.html" class="logo-text" aria-label="DiecastHouse Home">
+                Diecast<span>House</span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <ul class="desktop-nav flex items-center gap-8 list-none" role="navigation" aria-label="Main Navigation">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#katalog" class="nav-link">Katalog</a></li>
+                <li><a href="index.html#brands" class="nav-link">Brands</a></li>
+            </ul>
+
+            <!-- Ikon kanan -->
+            <div class="desktop-nav flex items-center gap-5">
+                <a href="#" class="nav-icon" aria-label="Cari Produk">
+                    <i class="ph ph-magnifying-glass"></i>
+                </a>
+                <a href="https://wa.me/6281234567890?text=Halo%20DiecastHouse%2C%20saya%20ingin%20bertanya%20tentang%20koleksi%20diecast"
+                   class="nav-icon" target="_blank" rel="noopener noreferrer" aria-label="Hubungi via WhatsApp">
+                    <i class="ph-fill ph-whatsapp-logo" style="font-size:1.2rem; color: #4ade80;"></i>
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Buka Menu" aria-expanded="false">
+                <i class="ph ph-list" id="menuIcon"></i>
+            </button>
+
+        </nav>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile Navigation">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#katalog" class="nav-link">Katalog</a>
+            <a href="index.html#brands" class="nav-link">Brands</a>
+            <hr style="border-color: var(--border-dim);">
+            <a href="https://wa.me/6281234567890" target="_blank" class="nav-link" style="color: #4ade80;">
+                <i class="ph-fill ph-whatsapp-logo" style="margin-right:0.5rem;"></i> Chat Admin
+            </a>
+        </div>
+    </div>
+</header>
+</div>
+
+<script>
+(function () {
+    'use strict';
+    const navbar    = document.getElementById('mainNavbar');
+    const btn       = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const icon      = document.getElementById('menuIcon');
+
+    /* Dynamic Island scroll morph */
+    let ticking = false;
+    function updateNavbar() {
+        navbar.classList.toggle('scrolled', window.scrollY > 30);
+        ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+        if (!ticking) { requestAnimationFrame(updateNavbar); ticking = true; }
+    }, { passive: true });
+    updateNavbar();
+
+    /* Mobile toggle */
+    btn.addEventListener('click', function () {
+        const isOpen = mobileNav.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+        icon.className = isOpen ? 'ph ph-x' : 'ph ph-list';
+        navbar.classList.toggle('menu-open', isOpen);
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!navbar.contains(e.target) && mobileNav.classList.contains('open')) {
+            mobileNav.classList.remove('open');
+            navbar.classList.remove('menu-open');
+            btn.setAttribute('aria-expanded', 'false');
+            icon.className = 'ph ph-list';
+        }
+    });
+})();
+</script>
+
+
+<!-- ============================================================
+     HALAMAN DETAIL PRODUK
+     Contoh: Nissan Skyline GT-R R34
+     Ganti konten di bawah untuk produk lain.
+     ============================================================ -->
+<main class="detail-page">
+    <div class="container-custom">
+
+        <!-- Breadcrumb / Tombol Kembali -->
+        <div data-aos="fade-down" data-aos-duration="500">
+            <a href="index.html" class="btn-back" aria-label="Kembali ke halaman utama">
+                <i class="ph ph-arrow-left" aria-hidden="true"></i>
+                Kembali ke Katalog
+            </a>
+        </div>
+
+        <!-- ===========================================================
+             SPLIT LAYOUT: Kiri (Gambar) | Kanan (Detail & Order)
+             =========================================================== -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 pb-24">
+
+            <!-- ---- KOLOM KIRI: Gambar Produk ---- -->
+            <div data-aos="fade-right" data-aos-duration="800">
+                <div class="detail-img-container">
+                    <img src="https://images.unsplash.com/photo-1727373492036-317e8859152e?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MjB8fG5pc3NhbiUyMHNreWxpbmUlMjByMzQlMjBndHJ8ZW58MHx8fHwxNzkxNTMzOTExfDA&ixlib=rb-4.1.0&w=800&q=80"
+                         alt="Nissan Skyline GT-R R34 - Mini GT 1:64 diecast miniatur"
+                         width="600" height="400" fetchpriority="high">
+                </div>
+
+                <!-- Info tambahan bawah gambar -->
+                <div class="grid grid-cols-2 gap-4 mt-4">
+
+                    <!-- Stok -->
+                    <div style="background:var(--bg-card); border:1px solid var(--border-dim); border-radius:14px; padding:1rem 1.25rem; display:flex; align-items:center; gap:0.75rem;">
+                        <i class="ph-fill ph-stack" style="color:var(--accent); font-size:1.2rem;"></i>
+                        <div>
+                            <div style="font-size:0.68rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted);">Stok</div>
+                            <div style="font-size:0.9rem; font-weight:700; color:var(--text-primary);">2 unit tersisa</div>
+                        </div>
+                    </div>
+
+                    <!-- Kategori -->
+                    <div style="background:var(--bg-card); border:1px solid var(--border-dim); border-radius:14px; padding:1rem 1.25rem; display:flex; align-items:center; gap:0.75rem;">
+                        <i class="ph-fill ph-tag" style="color:var(--accent); font-size:1.2rem;"></i>
+                        <div>
+                            <div style="font-size:0.68rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted);">Kategori</div>
+                            <div style="font-size:0.9rem; font-weight:700; color:var(--text-primary);">JDM Classics</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- end kolom kiri -->
+
+
+            <!-- ---- KOLOM KANAN: Detail & Order ---- -->
+            <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
+
+                <!-- Brand badge -->
+                <div style="margin-bottom:0.75rem;">
+                    <span style="display:inline-flex; align-items:center; gap:0.4rem; background:rgba(232,201,122,0.1); border:1px solid rgba(232,201,122,0.25); color:var(--accent); font-size:0.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:0.35rem 0.9rem; border-radius:100px;">
+                        <i class="ph-fill ph-star" style="font-size:0.7rem;"></i>
+                        Mini GT
+                    </span>
+                </div>
+
+                <!-- Nama Produk -->
+                <h1 style="font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; line-height: 1.1; letter-spacing: -1px; color: var(--text-primary); margin-bottom: 1rem;">
+                    Nissan Skyline GT-R R34
+                </h1>
+
+                <!-- Kondisi badge -->
+                <div style="margin-bottom:1.75rem;">
+                    <span class="condition-badge condition-mint">
+                        <i class="ph-fill ph-check-circle" style="font-size:0.8rem;"></i>
+                        Mint in Box
+                    </span>
+                </div>
+
+                <!-- Harga -->
+                <div style="margin-bottom:2rem;">
+                    <div style="font-size:0.72rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.35rem;">Harga</div>
+                    <div class="detail-price">Rp 185.000</div>
+                </div>
+
+                <!-- Divider -->
+                <hr style="border-color:var(--border-dim); margin-bottom:1.75rem;">
+
+                <!-- Tabel Spesifikasi -->
+                <div class="detail-specs" style="margin-bottom:2rem;">
+                    <h2 style="font-size:0.78rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.5rem;">
+                        Spesifikasi
+                    </h2>
+
+                    <div class="spec-row">
+                        <span class="spec-label">Skala</span>
+                        <span class="spec-value">1:64</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Brand</span>
+                        <span class="spec-value">Mini GT</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Warna</span>
+                        <span class="spec-value">Bayside Blue</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Tahun Rilis</span>
+                        <span class="spec-value">2023</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Packaging</span>
+                        <span class="spec-value" style="text-align:right; max-width:200px; line-height:1.4;">
+                            Kardus tersegel (window box), label harga masih ada
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Deskripsi Produk -->
+                <div style="margin-bottom:2.5rem;">
+                    <h2 style="font-size:0.78rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.75rem;">
+                        Deskripsi
+                    </h2>
+                    <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.85;">
+                        Replica presisi tinggi dari legenda JDM, Nissan Skyline GT-R R34 dalam livery Bayside Blue yang ikonik. 
+                        Detail eksterior mencakup spoiler GT-Wing, side skirts, dan velg BBS yang diproduksi dengan sangat akurat. 
+                        Interior juga menampilkan setir, konsol, dan roll cage yang realistis. 
+                        Diecast ini adalah grail item bagi kolektor JDM sejati.
+                    </p>
+                </div>
+
+                <!-- ====================================================
+                     TOMBOL UTAMA: Pesan Sekarang via WhatsApp
+                     ==================================================== -->
+                <a href="https://wa.me/6281234567890?text=Halo%20DiecastHouse%2C%20saya%20ingin%20membeli%20*Nissan%20Skyline%20GT-R%20R34*%20seharga%20*Rp%20185.000*.%20Apakah%20masih%20tersedia%3F"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn-wa"
+                   role="button"
+                   aria-label="Pesan Nissan Skyline GT-R R34 via WhatsApp seharga Rp 185.000">
+                    <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+                    Pesan Sekarang (WhatsApp)
+                </a>
+
+                <!-- Peringatan stok menipis -->
+                <div style="margin-top:1rem; display:flex; align-items:center; gap:0.5rem; padding:0.65rem 1rem; background:rgba(251,191,36,0.08); border:1px solid rgba(251,191,36,0.2); border-radius:10px;">
+                    <i class="ph-fill ph-fire" style="color:#fbbf24; font-size:0.95rem;"></i>
+                    <span style="font-size:0.78rem; color:#fbbf24; font-weight:600;">
+                        Stok menipis! Hanya tersisa 2 unit.
+                    </span>
+                </div>
+
+                <!-- Jaminan keamanan -->
+                <div class="flex items-center justify-center gap-6 mt-6"
+                     style="padding-top:1.5rem; border-top:1px solid var(--border-dim);">
+                    <div style="display:flex; align-items:center; gap:0.4rem;">
+                        <i class="ph-fill ph-shield-check" style="color:var(--accent); font-size:1rem;"></i>
+                        <span style="font-size:0.72rem; color:var(--text-muted);">100% Original</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:0.4rem;">
+                        <i class="ph-fill ph-package" style="color:var(--accent); font-size:1rem;"></i>
+                        <span style="font-size:0.72rem; color:var(--text-muted);">Packed Aman</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:0.4rem;">
+                        <i class="ph-fill ph-rocket-launch" style="color:var(--accent); font-size:1rem;"></i>
+                        <span style="font-size:0.72rem; color:var(--text-muted);">Kirim Cepat</span>
+                    </div>
+                </div>
+
+            </div><!-- end kolom kanan -->
+        </div><!-- end grid -->
+
+
+        <!-- ===========================================================
+             PRODUK LAINNYA — Rekomendasi di bawah detail
+             =========================================================== -->
+        <div style="border-top:1px solid var(--border-dim); padding-top:5rem; padding-bottom:5rem;">
+
+            <div class="mb-10" data-aos="fade-up">
+                <div class="section-label">Kamu Mungkin Suka</div>
+                <h2 class="section-title">Produk <span class="text-gold">Lainnya</span></h2>
+                <div class="divider-gold"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Rekomendasi 1: Mazda RX-7 -->
+                <article class="product-card" data-aos="fade-up" data-aos-delay="0">
+                    <a href="detail.html" class="block">
+                        <div class="product-img-wrap">
+                            <span class="product-scale-badge">1:64</span>
+                            <img src="https://images.unsplash.com/photo-1785057707887-e6be09d50560?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NXx8bWF6ZGElMjByeDclMjBmZDNzfGVufDB8fHx8MTc5MTUzMzkxNHww&ixlib=rb-4.1.0&w=800&q=80"
+                                 alt="Mazda RX-7 FD3S" loading="lazy" width="400" height="220">
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <div class="product-brand">Hot Wheels</div>
+                        <h3 class="product-name">Mazda RX-7 FD3S</h3>
+                        <div class="product-price">Rp 75.000</div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20DiecastHouse%2C%20saya%20ingin%20membeli%20Mazda%20RX-7%20FD3S%20seharga%20Rp%2075.000."
+                           class="product-wa-btn" target="_blank" rel="noopener noreferrer">
+                            <i class="ph-fill ph-whatsapp-logo"></i> Beli via WhatsApp
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Rekomendasi 2: Toyota Supra -->
+                <article class="product-card" data-aos="fade-up" data-aos-delay="80">
+                    <a href="detail.html" class="block">
+                        <div class="product-img-wrap">
+                            <span class="product-scale-badge">1:64</span>
+                            <img src="https://images.unsplash.com/photo-1607603750909-408e193868c7?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8dG95b3RhJTIwc3VwcmElMjBtazR8ZW58MHx8fHwxNzkxNTMzOTEwfDA&ixlib=rb-4.1.0&w=800&q=80"
+                                 alt="Toyota Supra A80" loading="lazy" width="400" height="220">
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <div class="product-brand">Mini GT</div>
+                        <h3 class="product-name">Toyota Supra A80</h3>
+                        <div class="product-price">Rp 195.000</div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20DiecastHouse%2C%20saya%20ingin%20membeli%20Toyota%20Supra%20A80%20seharga%20Rp%20195.000."
+                           class="product-wa-btn" target="_blank" rel="noopener noreferrer">
+                            <i class="ph-fill ph-whatsapp-logo"></i> Beli via WhatsApp
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Rekomendasi 3: Honda NSX -->
+                <article class="product-card" data-aos="fade-up" data-aos-delay="160">
+                    <a href="detail.html" class="block">
+                        <div class="product-img-wrap">
+                            <span class="product-scale-badge">1:64</span>
+                            <img src="https://images.unsplash.com/photo-1754322146856-36c4292472e8?ixid=M3wxMjA3fDB8MXxzZWFyY2h8OXx8aG9uZGElMjBuc3glMjBuYTF8ZW58MHx8fHwxNzkxNTMzODcwfDA&ixlib=rb-4.1.0&w=800&q=80"
+                                 alt="Honda NSX Type R" loading="lazy" width="400" height="220">
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <div class="product-brand">Tomica</div>
+                        <h3 class="product-name">Honda NSX Type R</h3>
+                        <div class="product-price">Rp 135.000</div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20DiecastHouse%2C%20saya%20ingin%20membeli%20Honda%20NSX%20Type%20R%20seharga%20Rp%20135.000."
+                           class="product-wa-btn" target="_blank" rel="noopener noreferrer">
+                            <i class="ph-fill ph-whatsapp-logo"></i> Beli via WhatsApp
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Rekomendasi 4: Porsche 911 -->
+                <article class="product-card" data-aos="fade-up" data-aos-delay="240">
+                    <a href="detail.html" class="block">
+                        <div class="product-img-wrap">
+                            <span class="product-scale-badge">1:64</span>
+                            <img src="https://images.unsplash.com/photo-1683403792821-7542e25aadcf?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8cG9yc2NoZSUyMDkxMSUyMGd0MyUyMHJzfGVufDB8fHx8MTc5MTUzMzkxMnww&ixlib=rb-4.1.0&w=800&q=80"
+                                 alt="Porsche 911 GT3 RS" loading="lazy" width="400" height="220">
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <div class="product-brand">Mini GT</div>
+                        <h3 class="product-name">Porsche 911 GT3 RS</h3>
+                        <div class="product-price">Rp 210.000</div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20DiecastHouse%2C%20saya%20ingin%20membeli%20Porsche%20911%20GT3%20RS%20seharga%20Rp%20210.000."
+                           class="product-wa-btn" target="_blank" rel="noopener noreferrer">
+                            <i class="ph-fill ph-whatsapp-logo"></i> Beli via WhatsApp
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </div><!-- end rekomendasi -->
+
+    </div><!-- end container -->
+</main>
+
+
+<!-- ============================================================
+     FOOTER — Minimalis 3 Kolom (sama dengan index.html)
+     ============================================================ -->
+<footer class="site-footer" role="contentinfo">
+    <div class="container-custom">
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 py-16">
+
+            <!-- Kolom 1: Brand -->
+            <div>
+                <div class="footer-logo">Diecast<span>House</span></div>
+                <p class="footer-tagline">Surga para kolektor miniatur. Setiap diecast hadir dengan kondisi mint, dikemas dengan aman, dikirim dengan cepat.</p>
+                <div class="flex gap-3 mt-6">
+                    <a href="#" class="footer-social" aria-label="Instagram"><i class="ph-fill ph-instagram-logo"></i></a>
+                    <a href="#" class="footer-social" aria-label="TikTok"><i class="ph-fill ph-tiktok-logo"></i></a>
+                    <a href="https://wa.me/6281234567890" target="_blank" class="footer-social" aria-label="WhatsApp"><i class="ph-fill ph-whatsapp-logo"></i></a>
+                    <a href="#" class="footer-social" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+                </div>
+            </div>
+
+            <!-- Kolom 2: Navigasi -->
+            <div>
+                <h4 class="footer-heading">Navigasi</h4>
+                <nav aria-label="Footer Navigation">
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="index.html#katalog" class="footer-link">Katalog Lengkap</a>
+                    <a href="index.html#brands" class="footer-link">Brands</a>
+                    <a href="index.html#kategori" class="footer-link">Kategori</a>
+                    <a href="https://wa.me/6281234567890" class="footer-link" target="_blank">Hubungi Admin</a>
+                </nav>
+            </div>
+
+            <!-- Kolom 3: Info -->
+            <div>
+                <h4 class="footer-heading">Informasi</h4>
+                <div class="flex items-start gap-3 mb-4">
+                    <i class="ph ph-clock" style="color: var(--accent); font-size: 1rem; flex-shrink:0;"></i>
+                    <div>
+                        <div style="font-size:0.82rem; font-weight:600; color: var(--text-primary);">Jam Operasional</div>
+                        <div style="font-size:0.78rem; color: var(--text-muted);">Senin – Sabtu: 09.00 – 21.00 WIB</div>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 mb-4">
+                    <i class="ph-fill ph-whatsapp-logo" style="color: #4ade80; font-size: 1rem; flex-shrink:0;"></i>
+                    <div>
+                        <div style="font-size:0.82rem; font-weight:600; color: var(--text-primary);">WhatsApp Admin</div>
+                        <a href="https://wa.me/6281234567890" target="_blank"
+                           style="font-size:0.78rem; color: var(--text-muted); text-decoration:none;"
+                           onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-muted)'">
+                            +62 812-3456-7890
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3">
+                    <i class="ph-fill ph-map-pin" style="color: var(--accent); font-size: 1rem; flex-shrink:0;"></i>
+                    <div>
+                        <div style="font-size:0.82rem; font-weight:600; color: var(--text-primary);">Lokasi</div>
+                        <div style="font-size:0.78rem; color: var(--text-muted);">Indonesia (Pengiriman ke seluruh wilayah)</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom flex flex-col md:flex-row justify-between items-center gap-2">
+            <span>© 2025 DiecastHouse. Semua hak cipta dilindungi.</span>
+            <span>Dibuat dengan <i class="ph-fill ph-heart" style="color:#e8c97a; font-size:0.85rem;"></i> untuk para kolektor</span>
+        </div>
+
+    </div>
+</footer>
+
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 700,
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 60,
+    });
+</script>
+
+</body>
+</html>

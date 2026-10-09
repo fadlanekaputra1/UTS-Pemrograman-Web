@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>DiecastHouse — Koleksi Miniatur Premium</title>
+    <meta name="description" content="Toko diecast premium terpercaya. Koleksi Hot Wheels, Mini GT, Tomica, dan lebih. Kondisi mint, packaging aman, pengiriman cepat.">
+
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons (CDN) — Minimalis, ringan, no bug -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gold':         '#c9a84c',
+                        'gold-light':   '#d9ba62',
+                        'dark-primary': '#0c0c10',
+                        'dark-secondary':'#101018',
+                        'dark-card':    '#141420',
+                    },
+                    fontFamily: {
+                        'outfit': ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- AOS (Animate On Scroll) CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="font-outfit bg-dark-primary">
+
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<div class="navbar-wrap" id="navWrap">
+<header class="navbar-glass" id="mainNavbar">
+    <div class="container-custom">
+        <nav class="navbar-inner flex items-center justify-between py-4">
+
+            <!-- Logo -->
+            <a href="index.html" class="logo-text" aria-label="DiecastHouse Home">
+                Diecast<span>House</span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <ul class="desktop-nav flex items-center gap-8 list-none" role="navigation" aria-label="Main Navigation">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="#katalog" class="nav-link">Katalog</a></li>
+                <li><a href="#brands" class="nav-link">Brands</a></li>
+            </ul>
+
+            <!-- Ikon kanan: Pencarian & WhatsApp -->
+            <div class="desktop-nav flex items-center gap-5">
+                <a href="#" class="nav-icon" aria-label="Cari Produk">
+                    <i class="ph ph-magnifying-glass"></i>
+                </a>
+                <a href="https://wa.me/6281234567890?text=Halo%20DiecastHouse%2C%20saya%20ingin%20bertanya%20tentang%20koleksi%20diecast"
+                   class="nav-icon" target="_blank" rel="noopener noreferrer" aria-label="Hubungi via WhatsApp">
+                    <i class="ph-fill ph-whatsapp-logo" style="font-size:1.2rem;"></i>
+                </a>
+            </div>
+
+            <!-- Mobile: Hamburger Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Buka Menu" aria-expanded="false">
+                <i class="ph ph-list" id="menuIcon"></i>
+            </button>
+
+        </nav>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile Navigation">
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="#katalog" class="nav-link">Katalog</a>
+            <a href="#brands" class="nav-link">Brands</a>
+            <hr style="border-color: var(--border-dim);">
+            <a href="https://wa.me/6281234567890" target="_blank" class="nav-link" style="color: #4ade80;">
+                <i class="ph-fill ph-whatsapp-logo" style="margin-right:0.5rem;"></i> Chat Admin
+            </a>
+        </div>
+    </div>
+</header>
+</div>
+
+<!-- Script toggle mobile menu & Dynamic Island scroll effect -->
+<script>
+(function () {
+    'use strict';
+
+    const navWrap = document.getElementById('navWrap');
+    const navbar = document.getElementById('mainNavbar');
+    const btn    = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const icon   = document.getElementById('menuIcon');
+
+    /* ---------- Liquid Glass Dynamic Island Scroll ---------- */
+    let ticking = false;
+    
+    function updateNavbar() {
+        const currentScroll = window.scrollY;
+        // Hitung kira-kira tinggi hero section (80vh)
+        const heroHeight = window.innerHeight * 0.8;
+
+        if (currentScroll > 50 && currentScroll < heroHeight) {
+            // Sembunyikan ke atas
+            navWrap.classList.add('nav-hidden');
+            navWrap.classList.remove('nav-scrolled');
+        } else if (currentScroll >= heroHeight) {
+            // Munculkan ke bawah sebagai Dynamic Island
+            navWrap.classList.remove('nav-hidden');
+            navWrap.classList.add('nav-scrolled');
+        } else {
+            // Kembali ke puncak
+            navWrap.classList.remove('nav-hidden');
+            navWrap.classList.remove('nav-scrolled');
+            
+            // Tutup menu mobile jika sedang buka
+            if (mobileNav.classList.contains('open')) {
+                mobileNav.classList.remove('open');
+                navbar.classList.remove('menu-open');
+                btn.setAttribute('aria-expanded', 'false');
+                icon.className = 'ph ph-list';
+            }
+        }
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            requestAnimationFrame(updateNavbar);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    updateNavbar(); // initial state on load
+
+    /* ---------- Mobile menu toggle ---------- */
+    btn.addEventListener('click', function () {
+        const isOpen = mobileNav.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+        icon.className = isOpen ? 'ph ph-x' : 'ph ph-list';
+        navbar.classList.toggle('menu-open', isOpen);
+    });
+
+    /* ---------- Close mobile menu on outside click ---------- */
+    document.addEventListener('click', function (e) {
+        if (!navbar.contains(e.target) && mobileNav.classList.contains('open')) {
+            mobileNav.classList.remove('open');
+            navbar.classList.remove('menu-open');
+            btn.setAttribute('aria-expanded', 'false');
+            icon.className = 'ph ph-list';
+        }
+    });
+})();
+</script>
+
+<!-- ============================================================
+     MAIN CONTENT
+     ============================================================ -->
+<main>
+
+    <!-- ===========================================================
+         SECTION 1: HERO — Full-screen JDM Background + Bubble FX
+         =========================================================== -->
+    <section class="hero-section hero-bg-jdm" id="hero" aria-label="Hero Section">
+
+        <!-- Background image layer -->
+        <div class="hero-bg-layer" aria-hidden="true"></div>
+
+        <!-- Dark gradient overlay -->
+        <div class="hero-bg-overlay" aria-hidden="true"></div>
+
+        <!-- Interactive bubble canvas — triggered on mousemove -->
+        <canvas id="bubbleCanvas" class="bubble-canvas" aria-hidden="true"></canvas>
+
+        <!-- Subtle noise texture -->
+        <div class="hero-noise" aria-hidden="true"></div>
+
+        <div class="container-custom relative z-10 w-full">
+            <div class="hero-inner-content">
+
+                <!-- Eyebrow label — editorial style -->
+                <p class="hero-eyebrow" data-aos="fade-up" data-aos-duration="800">Diecast Collection</p>
+
+                <!-- Headline -->
+                <h1 class="hero-headline" data-aos="fade-up" data-aos-duration="900" data-aos-delay="80">
+                    Koleksi Miniatur.
+                    <span class="accent-word">Detail Maksimal.</span>
+                </h1>
+
+                <!-- Subheadline -->
+                <p class="hero-sub" data-aos="fade-up" data-aos-delay="160">
+                    JDM, Muscle, dan Exotics paling langka. Kondisi mint,
+                    packaging aman, pengiriman ke seluruh Indonesia.
+                </p>
+
+                <!-- Tombol CTA -->
+                <div class="flex flex-wrap gap-3" data-aos="fade-up" data-aos-delay="240">
+                    <a href="#katalog" class="btn-primary" aria-label="Jelajahi Koleksi Diecast">
+                        Jelajahi Koleksi
+                    </a>
+                    <a href="https://wa.me/6281234567890" target="_blank" class="btn-secondary hero-btn-glass" aria-label="Hubungi via WhatsApp">
+                        <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+                        Tanya Admin
+                    </a>
+                </div>
+
+                <!-- Stats -->
+                <div class="hero-stats" data-aos="fade-up" data-aos-delay="320">
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-num">200+</div>
+                        <div class="hero-stat-label">Koleksi</div>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-num">15+</div>
+                        <div class="hero-stat-label">Brands</div>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-num">500+</div>
+                        <div class="hero-stat-label">Kolektor Puas</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="hero-scroll-hint" aria-hidden="true">
+            <i class="ph ph-caret-down"></i>
+        </div>
+
+    </section>
+
+<!-- ============================================================
+     BUBBLE CANVAS — Smooth interactive particle effect
+     ============================================================ -->
+<script>
+(function () {
+    'use strict';
+    const canvas = document.getElementById('bubbleCanvas');
+    const ctx    = canvas.getContext('2d');
+    const hero   = document.getElementById('hero');
+    let   W, H, bubbles = [], mouse = { x: -999, y: -999 }, raf;
+
+    /* ---- resize ---- */
+    function resize() {
+        W = canvas.width  = hero.offsetWidth;
+        H = canvas.height = hero.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    /* ---- bubble factory ---- */
+    function mkBubble(x, y) {
+        const r = 4 + Math.random() * 22;
+        return {
+            x, y,
+            r,
+            dx: (Math.random() - 0.5) * 0.55,
+            dy: -(0.35 + Math.random() * 0.8),
+            alpha: 0,
+            alphaTarget: 0.12 + Math.random() * 0.18,
+            grow:  true,
+            life:  0,
+            maxLife: 180 + Math.random() * 220,
+            hue:   30 + Math.random() * 30   /* warm gold / amber */
+        };
+    }
+
+    /* ---- spawn near cursor on move ---- */
+    hero.addEventListener('mousemove', function (e) {
+        const rect = hero.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+        if (Math.random() < 0.28) {
+            const jx = mouse.x + (Math.random() - 0.5) * 60;
+            const jy = mouse.y + (Math.random() - 0.5) * 60;
+            bubbles.push(mkBubble(jx, jy));
+        }
+    });
+
+    /* ---- touch support ---- */
+    hero.addEventListener('touchmove', function (e) {
+        const rect = hero.getBoundingClientRect();
+        const t = e.touches[0];
+        mouse.x = t.clientX - rect.left;
+        mouse.y = t.clientY - rect.top;
+        if (Math.random() < 0.3) {
+            bubbles.push(mkBubble(mouse.x, mouse.y));
+        }
+    }, { passive: true });
+
+    /* ---- draw one bubble ---- */
+    function drawBubble(b) {
+        ctx.save();
+        ctx.globalAlpha = b.alpha;
+
+        /* outer glow ring */
+        const grad = ctx.createRadialGradient(
+            b.x - b.r * 0.28, b.y - b.r * 0.28, b.r * 0.05,
+            b.x, b.y, b.r
+        );
+        grad.addColorStop(0, `hsla(${b.hue}, 72%, 88%, 0.55)`);
+        grad.addColorStop(0.5, `hsla(${b.hue}, 55%, 62%, 0.12)`);
+        grad.addColorStop(1, `hsla(${b.hue}, 40%, 50%, 0)`);
+
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        /* rim highlight */
+        ctx.strokeStyle = `hsla(${b.hue}, 90%, 95%, ${b.alpha * 0.55})`;
+        ctx.lineWidth   = 0.7;
+        ctx.stroke();
+
+        /* specular dot */
+        ctx.beginPath();
+        ctx.arc(b.x - b.r * 0.3, b.y - b.r * 0.3, b.r * 0.2, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(0, 0%, 100%, ${b.alpha * 0.7})`;
+        ctx.fill();
+
+        ctx.restore();
+    }
+
+    /* ---- animation loop ---- */
+    function loop() {
+        ctx.clearRect(0, 0, W, H);
+        for (let i = bubbles.length - 1; i >= 0; i--) {
+            const b = bubbles[i];
+            b.x    += b.dx;
+            b.y    += b.dy;
+            b.life++;
+
+            /* fade-in phase */
+            if (b.grow && b.alpha < b.alphaTarget) {
+                b.alpha += 0.008;
+            }
+
+            /* fade-out after half life */
+            if (b.life > b.maxLife * 0.55) {
+                b.grow  = false;
+                b.alpha -= 0.005;
+            }
+
+            if (b.alpha <= 0 || b.life > b.maxLife) {
+                bubbles.splice(i, 1);
+                continue;
+            }
+            drawBubble(b);
+        }
+        /* cap at 80 bubbles to stay smooth */
+        if (bubbles.length > 80) bubbles.splice(0, bubbles.length - 80);
+        raf = requestAnimationFrame(loop);
+    }
+    loop();
+})();
+</script>
+
+
+    <!-- ===========================================================
+         SECTION 2: CATEGORY SHOWCASE
+         =========================================================== -->
+    <section class="section-py" id="kategori" aria-label="Kategori Produk">
+        <div class="container-custom">
+
+            <!-- Heading -->
+            <div class="mb-12" data-aos="fade-up">
+                <div class="section-label">Kategori</div>
+                <h2 class="section-title">Temukan Koleksimu</h2>
+                <div class="divider-gold mx-auto"></div>
+            </div>
+
+            <!-- Grid 4 Kategori -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+
+                <!-- JDM Classics -->
+                <a href="#katalog" class="category-card" data-aos="fade-up" data-aos-delay="0" aria-label="Kategori JDM Classics">
+                    <span class="category-icon" aria-hidden="true">🇯🇵</span>
+                    <div class="category-name">JDM Classics</div>
+                    <div class="category-count">24 produk</div>
+                </a>
+
+                <!-- Muscle Cars -->
+                <a href="#katalog" class="category-card" data-aos="fade-up" data-aos-delay="100" aria-label="Kategori Muscle Cars">
+                    <span class="category-icon" aria-hidden="true">🇺🇸</span>
+                    <div class="category-name">Muscle Cars</div>
+                    <div class="category-count">16 produk</div>
+                </a>
+
+                <!-- Exotics -->
+                <a href="#katalog" class="category-card" data-aos="fade-up" data-aos-delay="200" aria-label="Kategori Exotics">
+                    <span class="category-icon" aria-hidden="true">🏎️</span>
+                    <div class="category-name">Exotics</div>
+                    <div class="category-count">19 produk</div>
+                </a>
+
+                <!-- Vintage -->
+                <a href="#katalog" class="category-card" data-aos="fade-up" data-aos-delay="300" aria-label="Kategori Vintage">
+                    <span class="category-icon" aria-hidden="true">🏁</span>
+                    <div class="category-name">Vintage</div>
+                    <div class="category-count">11 produk</div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===========================================================
+         SECTION 3: PRODUCT GRID — Hot Drops (8 Produk)
+         =========================================================== -->
+    <section class="section-py" id="katalog" aria-label="Katalog Produk Hot Drops">
+        <div class="container-custom">
+
+            <!-- Heading -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
+                <div data-aos="fade-up">
+                    <div class="section-label">New Arrivals</div>
+                    <h2 class="section-title">Hot Drops</h2>
+                    <div class="divider-gold"></div>
+                </div>
+                <a href="#" class="btn-secondary self-start md:self-auto" data-aos="fade-up" data-aos-delay="100">
+                    Lihat Semua <i class="ph ph-arrow-right" style="margin-left:4px;"></i>
+                </a>
+            </div>
+
+            <!-- Grid Produk — 1 kolom HP, 2 tablet, 4 PC -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- ---- Kartu 1: Nissan Skyline GT-R R34 ---- -->
+                <article class="product-card" data-aos="fade-up" data-aos-delay="0">
+                    <a href="detail.html?id=1" class="block">
+                        <div class="product-img-wrap">
+                            <span class="product-scale-badge">1:64</span>
+                            <img src="https://images.unsplash.com/photo-1727373492036-317e8859152e?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MjB8fG5pc3NhbiUyMHNreWxpbmUlMjByMzQlMjBndHJ8ZW58MHx8fHwxNzkxNTMzOTExfDA&ixlib=rb-4.1.0&w=800&q=80"
+                                 alt="Nissan Skyline GT-R R34 - Mini GT diecast" loading="lazy" width="400" height="220">
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <div class="product-brand">Mini GT</div>
+                        <h3 class="product-name" title="Nissan Skyline GT-R R34">Nissan Skyline GT-R R34</h3>
+                        <div class="product-price">Rp 185.000</div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20DiecastHouse%2C%20saya%20ingin%20membeli%20Nissan%20Skyline%20GT-R%20R34%20seharga%20Rp%20185.000.%20Apakah%20masih%20tersedia%3F"
+                           class="product-wa-btn" target="_blank" rel="noopener noreferrer" aria-label="Beli Nissan Skyline GT-R R34 via WhatsApp">
+                            <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+                            Beli via WhatsApp
+                        </a>
+                    </div>
+                </article>
+
+                <!-- ---- Kartu 2: Mazda RX-7 FD3S ---- -->
+                <article class="product-card" data-aos="fade-up" data-aos-delay="80">
+                    <a href="detail.html?id=2" class="block">
+                        <div class="product-img-wrap">
+                            <span class="product-scale-badge">1:64</span>
+                            <img src="https://images.unsplash.com/photo-1785057707887-e6be09d50560?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NXx8bWF6ZGElMjByeDclMjBmZDNzfGVufDB8fHx8MTc5MTUzMzkxNHww&ixlib=rb-4.1.0&w=800&q=80"
+                                 alt="Mazda RX-7 FD3S - Hot Wheels diecast" loading="lazy" width="400" height="220">
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <div class="product-brand">Hot Wheels</div>
+                        <h3 class="product-name" title="Mazda RX-7 FD3S">Mazda RX-7 FD3S</h3>
+                        <div class="product-price">Rp 75.000</div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20DiecastHouse%2C%20saya%20ingin%20membeli%20Mazda%20RX-7%20FD3S%20seharga%20Rp%2075.000.%20Apakah%20masih%20tersedia%3F"
+                           class="product-wa-btn" target="_blank" rel="noopener noreferrer" aria-label="Beli Mazda RX-7 FD3S via WhatsApp">
+                            <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+                            Beli via WhatsApp
+                        </a>
+                    </div>
+                </article>
+
+                <!-- ---- Kartu 3: Toyota Supra A80 ---- -->
+                <article class="product-card" data-aos="fade-up" data-aos-delay="160">
+                    <a href="detail.html?id=3" class="block">
+                        <div class="product-img-wrap">
+                            <span class="product-scale-badge">1:64</span>
+                            <img src="https://images.unsplash.com/photo-1607603750909-408e193868c7?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8dG95b3RhJTIwc3VwcmElMjBtazR8ZW58MHx8fHwxNzkxNTMzOTEwfDA&ixlib=rb-4.1.0&w=800&q=80"
+                                 alt="Toyota Supra A80 - Mini GT diecast" loading="lazy" width="400" height="220">
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <div class="product-brand">Mini GT</div>
+                        <h3 class="product-name" title="Toyota Supra A80">Toyota Supra A80</h3>
+                        <div class="product-price">Rp 195.000</div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20DiecastHouse%2C%20saya%20ingin%20membeli%20Toyota%20Supra%20A80%20seharga%20Rp%20195.000.%20Apakah%20masih%20tersedia%3F"
+                           class="product-wa-btn" target="_blank" rel="noopener noreferrer" aria-label="Beli Toyota Supra A80 via WhatsApp">
+                            <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+                            Beli via WhatsApp
+                        </a>
+                    </div>
+                </article>
+
+                <!-- ---- Kartu 4: Ford Mustang Shelby GT500 ---- -->
+                <article class="product-card" data-aos="fade-up" data-aos-delay="240">
+                    <a href="detail.html?id=4" class="block">
+                        <div class="product-img-wrap">
+                            <span class="product-scale-badge">1:64</span>
+                            <img src="https://images.unsplash.com/photo-1709928131326-e247ea02c81c?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8c2hlbGJ5JTIwZ3Q1MDB8ZW58MHx8fHwxNzkxNTMzODcyfDA&ixlib=rb-4.1.0&w=800&q=80"
+                                 alt="Ford Mustang Shelby GT500 - Hot Wheels diecast" loading="lazy" width="400" height="220">
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <div class="product-brand">Hot Wheels</div>
+                        <h3 class="product-name" title="Ford Mustang Shelby GT500">Ford Mustang Shelby GT500</h3>
+                        <div class="product-price">Rp 85.000</div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20DiecastHouse%2C%20saya%20ingin%20membeli%20Ford%20Mustang%20Shelby%20GT500%20seharga%20Rp%2085.000.%20Apakah%20masih%20tersedia%3F"
+                           class="product-wa-btn" target="_blank" rel="noopener noreferrer" aria-label="Beli Ford Mustang Shelby GT500 via WhatsApp">
+                            <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+                            Beli via WhatsApp
+                        </a>
+                    </div>
+                </article>
+
+                <!-- ---- Kartu 5: Lamborghini Huracán EVO ---- -->
+                <article class="product-card" data-aos="fade-up" data-aos-delay="0">
+                    <a href="detail.html?id=5" class="block">
+                        <div class="product-img-wrap">
+                            <span class="product-scale-badge">1:18</span>
+                            <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8bGFtYm9yZ2hpbmklMjBodXJhY2FuJTIwZXZvfGVufDB8fHx8MTc5MTUzMzkxM3ww&ixlib=rb-4.1.0&w=800&q=80"
+                                 alt="Lamborghini Huracán EVO - Maisto diecast" loading="lazy" width="400" height="220">
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <div class="product-brand">Maisto</div>
+                        <h3 class="product-name" title="Lamborghini Huracán EVO">Lamborghini Huracán EVO</h3>
+                        <div class="product-price">Rp 650.000</div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20DiecastHouse%2C%20saya%20ingin%20membeli%20Lamborghini%20Hurac%C3%A1n%20EVO%20seharga%20Rp%20650.000.%20Apakah%20masih%20tersedia%3F"
+                           class="product-wa-btn" target="_blank" rel="noopener noreferrer" aria-label="Beli Lamborghini Huracán EVO via WhatsApp">
+                            <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+                            Beli via WhatsApp
+                        </a>
+                    </div>
+                </article>
+
+                <!-- ---- Kartu 6: Porsche 911 GT3 RS ---- -->
+                <article class="product-card" data-aos="fade-up" data-aos-delay="80">
+                    <a href="detail.html?id=6" class="block">
+                        <div class="product-img-wrap">
+                            <span class="product-scale-badge">1:64</span>
+                            <img src="https://images.unsplash.com/photo-1683403792821-7542e25aadcf?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8cG9yc2NoZSUyMDkxMSUyMGd0MyUyMHJzfGVufDB8fHx8MTc5MTUzMzkxMnww&ixlib=rb-4.1.0&w=800&q=80"
+                                 alt="Porsche 911 GT3 RS - Mini GT diecast" loading="lazy" width="400" height="220">
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <div class="product-brand">Mini GT</div>
+                        <h3 class="product-name" title="Porsche 911 GT3 RS">Porsche 911 GT3 RS</h3>
+                        <div class="product-price">Rp 210.000</div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20DiecastHouse%2C%20saya%20ingin%20membeli%20Porsche%20911%20GT3%20RS%20seharga%20Rp%20210.000.%20Apakah%20masih%20tersedia%3F"
+                           class="product-wa-btn" target="_blank" rel="noopener noreferrer" aria-label="Beli Porsche 911 GT3 RS via WhatsApp">
+                            <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+                            Beli via WhatsApp
+                        </a>
+                    </div>
+                </article>
+
+                <!-- ---- Kartu 7: Honda NSX Type R ---- -->
+                <article class="product-card" data-aos="fade-up" data-aos-delay="160">
+                    <a href="detail.html?id=7" class="block">
+                        <div class="product-img-wrap">
+                            <span class="product-scale-badge">1:64</span>
+                            <img src="https://images.unsplash.com/photo-1754322146856-36c4292472e8?ixid=M3wxMjA3fDB8MXxzZWFyY2h8OXx8aG9uZGElMjBuc3glMjBuYTF8ZW58MHx8fHwxNzkxNTMzODcwfDA&ixlib=rb-4.1.0&w=800&q=80"
+                                 alt="Honda NSX Type R - Tomica diecast" loading="lazy" width="400" height="220">
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <div class="product-brand">Tomica</div>
+                        <h3 class="product-name" title="Honda NSX Type R">Honda NSX Type R</h3>
+                        <div class="product-price">Rp 135.000</div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20DiecastHouse%2C%20saya%20ingin%20membeli%20Honda%20NSX%20Type%20R%20seharga%20Rp%20135.000.%20Apakah%20masih%20tersedia%3F"
+                           class="product-wa-btn" target="_blank" rel="noopener noreferrer" aria-label="Beli Honda NSX Type R via WhatsApp">
+                            <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+                            Beli via WhatsApp
+                        </a>
+                    </div>
+                </article>
+
+                <!-- ---- Kartu 8: Dodge Challenger Hellcat ---- -->
+                <article class="product-card" data-aos="fade-up" data-aos-delay="240">
+                    <a href="detail.html?id=8" class="block">
+                        <div class="product-img-wrap">
+                            <span class="product-scale-badge">1:64</span>
+                            <img src="https://images.unsplash.com/photo-1680574893873-c7563dc5f81d?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8ZG9kZ2UlMjBjaGFsbGVuZ2VyJTIwc3J0fGVufDB8fHx8MTc5MTUzMzg3MXww&ixlib=rb-4.1.0&w=800&q=80"
+                                 alt="Dodge Challenger Hellcat - Hot Wheels diecast" loading="lazy" width="400" height="220">
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <div class="product-brand">Hot Wheels</div>
+                        <h3 class="product-name" title="Dodge Challenger Hellcat">Dodge Challenger Hellcat</h3>
+                        <div class="product-price">Rp 90.000</div>
+                        <a href="https://wa.me/6281234567890?text=Halo%20DiecastHouse%2C%20saya%20ingin%20membeli%20Dodge%20Challenger%20Hellcat%20seharga%20Rp%2090.000.%20Apakah%20masih%20tersedia%3F"
+                           class="product-wa-btn" target="_blank" rel="noopener noreferrer" aria-label="Beli Dodge Challenger Hellcat via WhatsApp">
+                            <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+                            Beli via WhatsApp
+                        </a>
+                    </div>
+                </article>
+
+            </div><!-- end grid produk -->
+        </div>
+    </section>
+
+
+    <!-- ===========================================================
+         SECTION 4: TRUST SECTION — 3 Keunggulan
+         =========================================================== -->
+    <section class="trust-section section-py" aria-label="Keunggulan DiecastHouse">
+        <div class="container-custom">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Mint Condition -->
+                <div class="trust-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="trust-icon" aria-hidden="true">
+                        <i class="ph-fill ph-shield-check"></i>
+                    </div>
+                    <h3 class="trust-title">Mint Condition</h3>
+                    <p class="trust-desc">Setiap produk kami teliti satu per satu. Garansi kondisi sempurna, persis seperti foto.</p>
+                </div>
+
+                <!-- Secure Packaging -->
+                <div class="trust-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="trust-icon" aria-hidden="true">
+                        <i class="ph-fill ph-package"></i>
+                    </div>
+                    <h3 class="trust-title">Secure Packaging</h3>
+                    <p class="trust-desc">Dikemas dengan bubble wrap premium berlapis. Kotak kardus tebal memastikan koleksimu tiba utuh.</p>
+                </div>
+
+                <!-- Fast Delivery -->
+                <div class="trust-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="trust-icon" aria-hidden="true">
+                        <i class="ph-fill ph-rocket-launch"></i>
+                    </div>
+                    <h3 class="trust-title">Fast Delivery</h3>
+                    <p class="trust-desc">Pengiriman ke seluruh Indonesia via JNE, J&amp;T, Sicepat. Estimasi 1–3 hari kerja ke kotamu.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===========================================================
+         SECTION 5: CTA BANNER — WhatsApp
+         =========================================================== -->
+    <section class="section-py" aria-label="Call to Action WhatsApp">
+        <div class="container-custom">
+            <div style="background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary)); border: 1px solid var(--border-dim); border-radius: 28px; padding: 4rem 3rem; text-align: center; position: relative; overflow: hidden;"
+                 data-aos="zoom-in">
+
+                <!-- Dekorasi background -->
+                <div style="position:absolute; top:-60px; right:-60px; width:200px; height:200px; background: radial-gradient(circle, rgba(37,211,102,0.08), transparent); border-radius:50%; pointer-events:none;" aria-hidden="true"></div>
+
+                <div style="font-size:2.8rem; margin-bottom:0.5rem;" aria-hidden="true">💬</div>
+                <h2 style="font-size:clamp(1.4rem,3vw,2rem); font-weight:800; color:var(--text-primary); margin-bottom:0.75rem;">
+                    Tidak menemukan yang kamu cari?
+                </h2>
+                <p style="font-size:0.9rem; color:var(--text-muted); max-width:440px; margin:0 auto 2rem; line-height:1.7;">
+                    Chat langsung dengan admin kami. Kami bisa bantu carikan koleksi spesifik atau info restock terbaru.
+                </p>
+                <a href="https://wa.me/6281234567890?text=Halo%20DiecastHouse%2C%20saya%20ingin%20request%20diecast%20tertentu"
+                   target="_blank" rel="noopener noreferrer"
+                   class="btn-wa" style="width:auto; display:inline-flex; padding: 1rem 2.5rem;"
+                   aria-label="Chat dengan Admin via WhatsApp">
+                    <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+                    Chat dengan Admin
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main><!-- end main -->
+
+
+<!-- ============================================================
+     FOOTER — Minimalis 3 Kolom
+     ============================================================ -->
+<footer class="site-footer" role="contentinfo">
+    <div class="container-custom">
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 py-16">
+
+            <!-- Kolom 1: Brand Identity -->
+            <div>
+                <div class="footer-logo">Diecast<span>House</span></div>
+                <p class="footer-tagline">Surga para kolektor miniatur. Setiap diecast hadir dengan kondisi mint, dikemas dengan aman, dikirim dengan cepat.</p>
+                <div class="flex gap-3 mt-6">
+                    <a href="#" class="footer-social" aria-label="Instagram DiecastHouse"><i class="ph-fill ph-instagram-logo"></i></a>
+                    <a href="#" class="footer-social" aria-label="TikTok DiecastHouse"><i class="ph-fill ph-tiktok-logo"></i></a>
+                    <a href="https://wa.me/6281234567890" target="_blank" class="footer-social" aria-label="WhatsApp Admin"><i class="ph-fill ph-whatsapp-logo"></i></a>
+                    <a href="#" class="footer-social" aria-label="YouTube DiecastHouse"><i class="ph-fill ph-youtube-logo"></i></a>
+                </div>
+            </div>
+
+            <!-- Kolom 2: Navigasi Cepat -->
+            <div>
+                <h4 class="footer-heading">Navigasi</h4>
+                <nav aria-label="Footer Navigation">
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="#katalog" class="footer-link">Katalog Lengkap</a>
+                    <a href="#brands" class="footer-link">Brands</a>
+                    <a href="#kategori" class="footer-link">Kategori</a>
+                    <a href="https://wa.me/6281234567890" class="footer-link" target="_blank">Hubungi Admin</a>
+                </nav>
+            </div>
+
+            <!-- Kolom 3: Info & Kontak -->
+            <div>
+                <h4 class="footer-heading">Informasi</h4>
+                <div class="flex items-start gap-3 mb-4">
+                    <i class="ph ph-clock" style="color: var(--accent); font-size: 1rem; flex-shrink:0;"></i>
+                    <div>
+                        <div style="font-size:0.82rem; font-weight:600; color: var(--text-primary);">Jam Operasional</div>
+                        <div style="font-size:0.78rem; color: var(--text-muted);">Senin – Sabtu: 09.00 – 21.00 WIB</div>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 mb-4">
+                    <i class="ph-fill ph-whatsapp-logo" style="color: #4ade80; font-size: 1rem; flex-shrink:0;"></i>
+                    <div>
+                        <div style="font-size:0.82rem; font-weight:600; color: var(--text-primary);">WhatsApp Admin</div>
+                        <a href="https://wa.me/6281234567890" target="_blank"
+                           style="font-size:0.78rem; color: var(--text-muted); text-decoration:none; transition: color 0.3s;"
+                           onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-muted)'">
+                            +62 812-3456-7890
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3">
+                    <i class="ph-fill ph-map-pin" style="color: var(--accent); font-size: 1rem; flex-shrink:0;"></i>
+                    <div>
+                        <div style="font-size:0.82rem; font-weight:600; color: var(--text-primary);">Lokasi</div>
+                        <div style="font-size:0.78rem; color: var(--text-muted);">Indonesia (Pengiriman ke seluruh wilayah)</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom flex flex-col md:flex-row justify-between items-center gap-2">
+            <span>© 2025 DiecastHouse. Semua hak cipta dilindungi.</span>
+            <span>Dibuat dengan <i class="ph-fill ph-heart" style="color:#e8c97a; font-size:0.85rem;"></i> untuk para kolektor</span>
+        </div>
+
+    </div>
+</footer>
+
+
+<!-- ============================================================
+     SCRIPTS — Dimuat di akhir body
+     ============================================================ -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 700,
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 60,
+    });
+</script>
+
+</body>
+</html>
